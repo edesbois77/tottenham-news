@@ -1,2 +1,5 @@
 #!/bin/bash
-python simple_test.py
+echo "Starting simple HTTP server..."
+cd /opt/render/project/src
+ls -la
+python -m http.server 8080
