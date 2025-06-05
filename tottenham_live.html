@@ -1,0 +1,2035 @@
+<!DOCTYPE html>
+<html><head>
+<title>Tottenham Hotspur</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body { 
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; 
+    margin: 0; padding: 0; background: #f8f9fa; line-height: 1.6;
+    width: 100%;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: 
+        linear-gradient(rgba(19, 34, 87, 0.75), rgba(19, 34, 87, 0.75)),
+        url('stadium.jpeg');
+    background-size: cover;
+    background-position: center;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    padding: 15px 0;
+}
+
+.logo-container {
+    text-align: center;
+    margin: 8px 0 12px 0;
+}
+
+.team-logo {
+    height: 60px;
+    width: auto;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5));
+    transition: transform 0.3s ease;
+}
+
+.team-logo:hover {
+    transform: scale(1.1);
+}
+
+.header-content {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+h1 { 
+    color: white; text-align: center; margin: 0 0 8px 0; font-size: 2.4em; 
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8); font-weight: bold;
+}
+
+.subtitle { 
+    text-align: center; color: white; margin: 0 0 12px 0; font-style: italic; 
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8); font-size: 0.85em;
+}
+
+.stats { 
+    background: none; color: white; 
+    padding: 8px 12px; text-align: center; 
+    font-weight: normal; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+    margin: 0 15px; font-size: 0.75em;
+}
+
+.manual-refresh {
+    background: #132257; 
+    color: white; padding: 8px 16px; border-radius: 20px; 
+    font-size: 0.8em; box-shadow: 0 4px 12px rgba(0,0,0,0.2); 
+    cursor: pointer; transition: all 0.3s; border: none;
+    margin: 12px auto 0 auto;
+    display: block;
+}
+
+.manual-refresh:hover {
+    background: #0d1a3f;
+    transform: scale(1.05);
+}
+
+.main-content {
+    margin-top: 280px;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 10px 50px 10px;
+}
+
+.article { 
+    background: white; margin: 20px 0; border-radius: 12px; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; 
+    border-left: 4px solid #132257; transition: transform 0.3s ease;
+}
+
+.article:hover { transform: translateY(-2px); }
+
+.article-image { 
+    width: 100%; height: 180px; object-fit: cover; display: block; 
+}
+
+.article-content { padding: 15px; }
+
+.source-info { 
+    color: #666; font-size: 0.8em; margin-bottom: 10px; font-weight: normal;
+}
+
+.source-link {
+    color: #666;
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+.source-link:hover {
+    opacity: 0.7;
+}
+
+.title { 
+    color: #132257; font-size: 1.1em; font-weight: bold; 
+    margin-bottom: 12px; line-height: 1.3; 
+}
+
+.summary { 
+    line-height: 1.6; margin: 12px 0; color: #333; font-size: 0.95em; 
+}
+
+.read-full-link {
+    color: #132257;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.3s;
+    display: block;
+    margin-top: 12px;
+    font-size: 0.9em;
+}
+
+.read-full-link:hover {
+    opacity: 0.7;
+    text-decoration: underline;
+}
+
+.actions { 
+    display: flex; justify-content: space-between; align-items: center; 
+    margin-top: 15px; padding-top: 12px; border-top: 1px solid #eee; 
+    width: 100%;
+}
+
+.social-icons { 
+    display: flex; 
+    justify-content: space-between; 
+    width: 100%;
+    gap: 5px;
+    align-items: center;
+}
+
+.icon-btn { 
+    background: none; border: none; cursor: pointer; padding: 8px 6px; 
+    border-radius: 6px; transition: all 0.3s; font-size: 14px; 
+    display: flex; align-items: center; justify-content: center; gap: 4px;
+    color: #132257;
+    flex: 1;
+    min-height: 40px;
+    white-space: nowrap;
+}
+
+.icon-btn:hover { 
+    background: #f0f4ff; 
+    transform: translateY(-1px);
+}
+
+.like-btn.liked { 
+    background: #e3f2fd; 
+}
+
+.save-btn.saved { 
+    background: #e3f2fd; 
+}
+
+@media (max-width: 480px) {
+    .main-content { 
+        margin-top: 220px; 
+        padding: 0 8px 30px 8px;
+    }
+    
+    h1 { font-size: 1.6em; }
+    
+    .article { margin: 15px 0; }
+    
+    .article-content { padding: 12px; }
+    
+    .article-image { height: 160px; }
+    
+    .title { font-size: 1.05em; }
+    
+    .summary { font-size: 0.9em; }
+    
+    .icon-btn {
+        padding: 6px 4px;
+        font-size: 12px;
+        min-height: 36px;
+    }
+}
+
+@media (max-width: 320px) {
+    .main-content { 
+        margin-top: 170px;
+        padding: 0 5px 30px 5px; 
+    }
+    
+    .article-content { padding: 10px; }
+    
+    .icon-btn {
+        padding: 5px 3px;
+        gap: 2px;
+    }
+}
+</style>
+</head><body>
+
+<div class="header">
+    <div class="header-content">
+        <h1>Tottenham Hotspur</h1>
+<div class="logo-container">
+    <img src="https://d6bvpt6ekkwt0.cloudfront.net/5faa82a8ca2f3ac7798b4570/width-200/tottenham-logo.png.webp?1675557623" alt="Tottenham Hotspur Logo" class="team-logo">
+</div>
+        <div class="stats" id="statsBar">
+            <span id="lastUpdateTime">Last updated: 05 June 2025, 21:35</span>
+        </div>
+        <button class="manual-refresh" id="manualRefresh" onclick="manualRefresh()" title="Click to refresh">
+            Refresh
+        </button>
+    </div>
+</div>
+
+<div class="main-content">
+<div id="articlesContainer">
+<div class="article">
+    <img src="https://tothelaneandback.com/wp-content/uploads/2025/06/To-The-Lane-And-Back-1-6-1000x600.png" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://tothelaneandback.com" class="source-link" target="_blank">To The Lane And Back</a> - 05 June 2025, 20:35
+        </div>
+        
+        <div class="title">FC Copenhagen fail to tie Roony Bardghji to new contract in big boost for Tottenham</div>
+        <div class="summary">Tottenham Hotspur are likely to resolve boss Ange Postecoglou’s future before pursuing any new signings, as the Australian is not guaranteed to be in charge next season, despite leading the club to their first trophy in 17 years.</div>
+        
+        <a href="https://tothelaneandback.com/2025/06/06/tottenham-receive-roony-bardghji-boost-amid-big-contract-development/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://tothelaneandback.com/2025/06/06/tottenham-receive-roony-bardghji-boost-amid-big-contract-development/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://www.tottenhamhotspurnews.com/static/uploads/11/2025/06/Harvey-Elliott.jpg" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://www.tottenhamhotspurnews.com" class="source-link" target="_blank">TottenhamHotspurNews</a> - 05 June 2025, 20:30
+        </div>
+        
+        <div class="title">Liverpool to ‘hand Tottenham perfect transfer’ as Harvey Elliott signing news emerges</div>
+        <div class="summary">With a point to prove and endless potential, Tottenham should make the outgoing Liverpool youngster their next signing of the summer 2025 transfer window. Harvey Elliott is one of many who could leave Premier League champions Liverpool this summer, and Tottenham may take advantage of that.</div>
+        
+        <a href="https://www.tottenhamhotspurnews.com/opinion/liverpool-to-hand-tottenham-perfect-transfer-as-harvey-elliott-signing-news-emerges/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://www.tottenhamhotspurnews.com/opinion/liverpool-to-hand-tottenham-perfect-transfer-as-harvey-elliott-signing-news-emerges/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://www.spurs-web.com/static/uploads/1/2024/06/badge3-scaled.jpg" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://www.spurs-web.com" class="source-link" target="_blank">SpursWeb</a> - 05 June 2025, 20:30
+        </div>
+        
+        <div class="title">When Tottenham Hotspur could release their black away kit for 2025/26 - Opinion</div>
+        <div class="summary">Here is everything we know about Tottenham Hotspur’s 2025/26 away kit release date, design details and pricing revealed ahead of next season. Tottenham Hotspur have announced the release of their home kit for the 2025/26 season, and the kit is predominantly white, with the sleeves partly coloured with light grey and dark blue.</div>
+        
+        <a href="https://www.spurs-web.com/spurs-news/when-tottenham-hotspur-could-release-their-black-away-kit-for-2025-26/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://www.spurs-web.com/spurs-news/when-tottenham-hotspur-could-release-their-black-away-kit-for-2025-26/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://tothelaneandback.com/wp-content/uploads/2025/03/Screenshot-2025-03-30-035754.png" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://tothelaneandback.com" class="source-link" target="_blank">To The Lane And Back</a> - 05 June 2025, 20:20
+        </div>
+        
+        <div class="title">Journo confirms Tottenham interest in Ghana star who could replace Saudi-linked Spurs ace</div>
+        <div class="summary">The future of Ange Postecoglou remains up in the air, but regardless of who their manager will be next season, new signings are a necessity. Daniel Levy is prepared tosplash out on a marquee signingahead of next season to help change the club’s fortunes.</div>
+        
+        <a href="https://tothelaneandback.com/2025/06/06/journo-reveals-tottenham-interest-replace-son-heung-min-with-antoine-semenyo/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://tothelaneandback.com/2025/06/06/journo-reveals-tottenham-interest-replace-son-heung-min-with-antoine-semenyo/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://www.footballinsider247.com/static/uploads/1/2025/05/Daniel-Levy-Ange-Postecoglou.jpg" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://www.footballinsider247.com" class="source-link" target="_blank">Football Insider</a> - 05 June 2025, 20:00
+        </div>
+        
+        <div class="title">'Tottenham axe key figure as top-class new arrival heads in who I know well'</div>
+        <div class="summary">Tottenham’s summer summer rebuild extends beyond the uncertain future of first-team manager Ange Postecoglou. Chairman Daniel Levy is thought to haveasked his senior players if he should sack Postecoglou, while his assistant, Ryan Mason, has already left totake on a new challenge as manager of West Brom.</div>
+        
+        <a href="https://www.footballinsider247.com/tottenham-axe-key-figure-as-top-class-new-arrival-heads-in-who-i-know-well/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://www.footballinsider247.com/tottenham-axe-key-figure-as-top-class-new-arrival-heads-in-who-i-know-well/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://www.spurs-web.com/static/uploads/1/2024/01/spursbadge1.jpg" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://www.spurs-web.com" class="source-link" target="_blank">SpursWeb</a> - 05 June 2025, 20:00
+        </div>
+        
+        <div class="title">‘Tottenham is a top club’ – Player is relishing linking up with Europa League champions</div>
+        <div class="summary">One of the biggest stories to watch from a Spurs perspective during pre-season is how the teenage centre-back copes with the step up to the highest level. Journalist Ben Jacobs revealed earlier this week thatTottenham have been very impressed with Vuskovic’s development, and suggested that the club may consider loaning him to the Bundesliga next season.</div>
+        
+        <a href="https://www.spurs-web.com/spurs-news/tottenham-is-a-top-club-player-is-relishing-linking-up-with-europa-league-champions/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://www.spurs-web.com/spurs-news/tottenham-is-a-top-club-player-is-relishing-linking-up-with-europa-league-champions/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://tothelaneandback.com/wp-content/uploads/2025/06/Screenshot-2025-06-05-174926.png" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://tothelaneandback.com" class="source-link" target="_blank">To The Lane And Back</a> - 05 June 2025, 20:00
+        </div>
+        
+        <div class="title">Tottenham in the hunt to land ‘strong’ Feyenoord star; Arsenal and Liverpool in the fray for €30m man</div>
+        <div class="summary">Tottenham are looking to build on the Europa League success in the summer and close the gap on their rivals next season. Now, the North London club is in prime position to land their intended targets for each position as they prepare to play some of the best clubs in Europe next season.There is no room for complacency heading into the transfer marketand fans will hope that...</div>
+        
+        <a href="https://tothelaneandback.com/2025/06/06/tottenham-in-the-hunt-to-land-strong-feyenoord-captain-top-pl-clubs-keen/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://tothelaneandback.com/2025/06/06/tottenham-in-the-hunt-to-land-strong-feyenoord-captain-top-pl-clubs-keen/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://www.tottenhamhotspurnews.com/static/uploads/11/2025/06/Lucas-Bergvall-main.jpg" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://www.tottenhamhotspurnews.com" class="source-link" target="_blank">TottenhamHotspurNews</a> - 05 June 2025, 19:46
+        </div>
+        
+        <div class="title">Tottenham ready to seal transfer for next Lucas Bergvall as contract details emerge</div>
+        <div class="summary">Tottenham may have endured a torrid season, but they do possess an array of talent primed for Champions League football. One of thesuccess stories of Tottenham’s campaign was the emergence of Lucas Bergvall, who is set for a promising future in North London.</div>
+        
+        <a href="https://www.tottenhamhotspurnews.com/transfers/tottenham-ready-to-seal-transfer-for-next-lucas-bergvall-as-contract-details-emerge/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://www.tottenhamhotspurnews.com/transfers/tottenham-ready-to-seal-transfer-for-next-lucas-bergvall-as-contract-details-emerge/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://tothelaneandback.com/wp-content/uploads/2025/06/Screenshot-2025-06-05-171217.png" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://tothelaneandback.com" class="source-link" target="_blank">To The Lane And Back</a> - 05 June 2025, 19:45
+        </div>
+        
+        <div class="title">Tottenham takeover not off the table as Daniel Levy seeks ‘fresh investment’</div>
+        <div class="summary">Ange Postecoglou’s fate is not yet decided, and the Lilywhites cannot sign new players before sorting out the managerial situation at the club. They are already playing catch-up with other clubs in the transfer market and fans are getting frustrated as the club is missing out on their intended targets for next season.</div>
+        
+        <a href="https://tothelaneandback.com/2025/06/06/finance-expert-dan-plumley-believes-tottenham-takeover-is-not-off-the-table-amid-major-boardroom-changes/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://tothelaneandback.com/2025/06/06/finance-expert-dan-plumley-believes-tottenham-takeover-is-not-off-the-table-amid-major-boardroom-changes/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://www.spurs-web.com/static/uploads/1/2025/05/kevin-danso-255.jpg" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://www.spurs-web.com" class="source-link" target="_blank">SpursWeb</a> - 05 June 2025, 19:30
+        </div>
+        
+        <div class="title">Kevin Danso reveals what he realised about Tottenham and Arsenal during the trophy parade</div>
+        <div class="summary">Ange Postecoglou has admitted that he was overwhelmed by the sea of Spurs fansduring the parade, admitting that the sheer magnitude of the event showed how massive a club Tottenham are. Winning something with a club like Tottenham makes the feeling even sweeter.” The speculation linkingCristian Romero with a move to Atletico Madridshows no signs of slowing down, and Tottenham...</div>
+        
+        <a href="https://www.spurs-web.com/spurs-news/kevin-danso-reveals-what-he-realised-about-tottenham-and-arsenal-during-the-trophy-parade/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://www.spurs-web.com/spurs-news/kevin-danso-reveals-what-he-realised-about-tottenham-and-arsenal-during-the-trophy-parade/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://tothelaneandback.com/wp-content/uploads/2025/06/Screenshot-2025-06-05-163618.png" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://tothelaneandback.com" class="source-link" target="_blank">To The Lane And Back</a> - 05 June 2025, 19:30
+        </div>
+        
+        <div class="title">“Recognised myself”- Dutch legend offers high praise for Tottenham star after successful N17 stint</div>
+        <div class="summary">The Spurs No.37 has endured a ‘stop-start’ campaign this season as well for Ange Postecoglou’s side. The Netherlands international has become a mainstay in the defensive line under Ange Postecoglou and he is one of the first names on the team-sheet for the Lilywhites.</div>
+        
+        <a href="https://tothelaneandback.com/2025/06/06/recognised-myself-dutch-legend-has-high-praises-for-tottenham-star-after-successful-n17-stint/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://tothelaneandback.com/2025/06/06/recognised-myself-dutch-legend-has-high-praises-for-tottenham-star-after-successful-n17-stint/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://www.tottenhamhotspurnews.com/static/uploads/11/2025/06/FEATURED-IMAGE-RIGHT-2.jpg" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://www.tottenhamhotspurnews.com" class="source-link" target="_blank">TottenhamHotspurNews</a> - 05 June 2025, 19:00
+        </div>
+        
+        <div class="title">Daniel Levy could oversee £250m-plus losses at Tottenham in new PSR update</div>
+        <div class="summary">Tottenham supporters have once again been left bitterly disappointed by those in the boardroom this season. When you consider the help that Champions League qualification has had,Ange Postecogloumay be seen as deserving to keep his place at the helm for next season.</div>
+        
+        <a href="https://www.tottenhamhotspurnews.com/news/daniel-levy-could-oversee-250m-plus-losses-at-tottenham-in-new-psr-update/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://www.tottenhamhotspurnews.com/news/daniel-levy-could-oversee-250m-plus-losses-at-tottenham-in-new-psr-update/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://www.spurs-web.com/static/uploads/1/2025/05/europa-league-30.jpg" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://www.spurs-web.com" class="source-link" target="_blank">SpursWeb</a> - 05 June 2025, 19:00
+        </div>
+        
+        <div class="title">Tottenham rise seven places in new UEFA rankings after Europa League win over Manchester United</div>
+        <div class="summary">That victory was Tottenham’s fourth against the Red Devils last season, and it was the most important of them all, as Spurs ended a 17-year wait for silverware and a 41-year wait for a European trophy, after last winning one in 1984.</div>
+        
+        <a href="https://www.spurs-web.com/spurs-news/tottenham-rise-seven-places-in-new-uefa-rankings-after-europa-league-win-over-manchester-united/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://www.spurs-web.com/spurs-news/tottenham-rise-seven-places-in-new-uefa-rankings-after-europa-league-win-over-manchester-united/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://i2-prod.mirror.co.uk/article35345335.ece/ALTERNATES/s1200/0_GettyImages-2216342050.jpg" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://www.mirror.co.uk/sport/football" class="source-link" target="_blank">Mirror Football</a> - 05 June 2025, 18:58
+        </div>
+        
+        <div class="title">Tottenham's whopping cost to sack Ange Postecoglou ahead of imminent decision</div>
+        <div class="summary">It will cost Tottenham around £4million to sackAnge Postecoglou,having already handed the Australian a £2m bonus. Postecoglou led Spurs to their first major trophy for 17 years by winning theEuropa Leaguelast month.</div>
+        
+        <a href="https://www.mirror.co.uk/sport/football/news/tottenham-ange-postecoglou-sack-compensation-35345331" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://www.mirror.co.uk/sport/football/news/tottenham-ange-postecoglou-sack-compensation-35345331')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://www.spurs-web.com/static/uploads/1/2025/03/generic0.jpg" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://www.spurs-web.com" class="source-link" target="_blank">SpursWeb</a> - 05 June 2025, 18:30
+        </div>
+        
+        <div class="title">Italian defender reveals he’s aware of transfer interest from Tottenham Hotspur</div>
+        <div class="summary">While Paratici might not have yet begun work at Spurs officially, it looks like he is heavily involved in Tottenham’s planning for the summer window, which most Spurs fans will be pleased about, given his track record in the transfer window.</div>
+        
+        <a href="https://www.spurs-web.com/spurs-news/italian-defender-reveals-hes-aware-of-transfer-interest-from-tottenham-hotspur/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://www.spurs-web.com/spurs-news/italian-defender-reveals-hes-aware-of-transfer-interest-from-tottenham-hotspur/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://www.tottenhamhotspurnews.com/static/uploads/11/2025/06/Ait-Nouri-Postecoglou.jpg" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://www.tottenhamhotspurnews.com" class="source-link" target="_blank">TottenhamHotspurNews</a> - 05 June 2025, 18:15
+        </div>
+        
+        <div class="title">Rayan Aït-Nouri medical booked for new transfer after Tottenham news</div>
+        <div class="summary">Tottenham have been on the lookoutfor market opportunities to strengthen their squad in time for the new season. With UEFA Champions League football on the agenda next season, Daniel Levy has likely already compiled a long list of potential recruits. Tottenham target Rayan Aït-Nouri is on the verge of sealing an exit from Wolves.</div>
+        
+        <a href="https://www.tottenhamhotspurnews.com/transfers/rayan-ait-nouri-medical-booked-for-new-transfer-after-tottenham-news/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://www.tottenhamhotspurnews.com/transfers/rayan-ait-nouri-medical-booked-for-new-transfer-after-tottenham-news/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://www.tottenhamhotspurnews.com/static/uploads/11/2025/06/Tottenham-Jack-Grealish.png" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://www.tottenhamhotspurnews.com" class="source-link" target="_blank">TottenhamHotspurNews</a> - 05 June 2025, 18:10
+        </div>
+        
+        <div class="title">Expert says Grealish agent chat would be 'fascinating' after Tottenham transfer news</div>
+        <div class="summary">Ange Postecoglou‘s side struggled to a 17th-place finish in the Premier League this season and need additional creativity if they are to climb the table next season. Jack Grealish is on Tottenham’s radar ahead of the summer transfer window.</div>
+        
+        <a href="https://www.tottenhamhotspurnews.com/exclusives/jack-grealish-agent-in-fascinating-update-as-tottenham-transfer-high-on-list-already/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://www.tottenhamhotspurnews.com/exclusives/jack-grealish-agent-in-fascinating-update-as-tottenham-transfer-high-on-list-already/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://www.spurs-web.com/static/uploads/1/2025/01/heung-min-son-22-scaled.jpg" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://www.spurs-web.com" class="source-link" target="_blank">SpursWeb</a> - 05 June 2025, 18:00
+        </div>
+        
+        <div class="title">Journalist claims Tottenham could replace Heung-min Son with 13-goal Premier League forward</div>
+        <div class="summary">Journalist Dean Jones has provided the latest on Heung-min Son’s future and has revealed that Spurs may look to push ahead with a move for a Premier League winger. It has been reported over recent weeks thatTottenham may consider selling Son if they receive a big enough offeras they could use the funds from his sale for a major summer rebuild.</div>
+        
+        <a href="https://www.spurs-web.com/spurs-news/journalist-claims-tottenham-could-replace-heung-min-son-with-13-goal-premier-league-forward/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://www.spurs-web.com/spurs-news/journalist-claims-tottenham-could-replace-heung-min-son-with-13-goal-premier-league-forward/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://www.spurs-web.com/static/uploads/1/2025/05/daniel-levy-22.jpg" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://www.spurs-web.com" class="source-link" target="_blank">SpursWeb</a> - 05 June 2025, 17:30
+        </div>
+        
+        <div class="title">Daniel Levy unlikely to meet financial demands to sign ‘fantastic’ attacker</div>
+        <div class="summary">Jamie O’Hara has urged Daniel Levy to make Leroy Sane his statement signingof this transfer window, after the German international was offered to Spurs. Tottenham Hotspurwould be desperate to improve their squad ahead of next season, as the north London club makes a return to theUEFA Champions Leagueafter two seasons away.</div>
+        
+        <a href="https://www.spurs-web.com/spurs-news/daniel-levy-unlikely-to-meet-financial-demands-to-sign-fantastic-attacker/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://www.spurs-web.com/spurs-news/daniel-levy-unlikely-to-meet-financial-demands-to-sign-fantastic-attacker/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://www.footballinsider247.com/static/uploads/1/2025/06/Daniel-Levy-Tottenham-Ange-Postecoglou-Thomas-Frank-Brentford.jpg" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://www.footballinsider247.com" class="source-link" target="_blank">Football Insider</a> - 05 June 2025, 17:14
+        </div>
+        
+        <div class="title">'Levy to pay 8-figure Tottenham fee to sack Postecoglou for Thomas Frank'</div>
+        <div class="summary">Tottenham owner Daniel Levy will have to pay big money to replace Ange Postecoglou with Brentford boss Thomas Frank. Spurs’season may have ended on a high note last month as they won the Europa League againstManchester United, but their glory does not look to have solidified Postecoglou’s job any further, following a dismal league campaign.</div>
+        
+        <a href="https://www.footballinsider247.com/levy-to-pay-8-figure-tottenham-fee-to-sack-postecoglou-for-thomas-frank/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://www.footballinsider247.com/levy-to-pay-8-figure-tottenham-fee-to-sack-postecoglou-for-thomas-frank/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://www.tottenhamhotspurnews.com/static/uploads/11/2025/05/Tottenham-Daniel-Levy-and-Ange-Postecoglou-1.jpg" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://www.tottenhamhotspurnews.com" class="source-link" target="_blank">TottenhamHotspurNews</a> - 05 June 2025, 17:10
+        </div>
+        
+        <div class="title">King Exclusive: Postecoglou’s agents in negotiations with Levy amid 'Strange' Tottenham sack news</div>
+        <div class="summary">Daniel Levy and Postecoglou have both been on holiday after a rollercoaster season, but the former returned to work this week and announced thedeparture of a long-term associate at Tottenham. Tottenham supporters will be growing impatient as the Ange Postecoglou sack saga drags on.</div>
+        
+        <a href="https://www.tottenhamhotspurnews.com/exclusives/postecoglou-in-negotiations-with-levy-amid-strange-tottenham-sack-news/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://www.tottenhamhotspurnews.com/exclusives/postecoglou-in-negotiations-with-levy-amid-strange-tottenham-sack-news/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://www.tottenhamhotspurnews.com/static/uploads/11/2025/06/Tottenham-Harry-Kane.jpg" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://www.tottenhamhotspurnews.com" class="source-link" target="_blank">TottenhamHotspurNews</a> - 05 June 2025, 17:00
+        </div>
+        
+        <div class="title">Tottenham supporters tear into Harry Kane as new footage surfaces – ‘Bitter’</div>
+        <div class="summary">Kane has enjoyed his time at Bayern Munich since departing fromTottenham, with the striker winning the first major trophy of his career this season as Vincent Kompany’s side lifted the Bundesliga title. Kane made it clear Tottenham was not too far from his mind when hereacted to Ryan Mason’s departure.</div>
+        
+        <a href="https://www.tottenhamhotspurnews.com/fans/tottenham-supporters-tear-into-harry-kane-as-new-footage-surfaces-bitter/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://www.tottenhamhotspurnews.com/fans/tottenham-supporters-tear-into-harry-kane-as-new-footage-surfaces-bitter/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://www.spurs-web.com/static/uploads/1/2025/03/wilson-odobert-21.jpg" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://www.spurs-web.com" class="source-link" target="_blank">SpursWeb</a> - 05 June 2025, 17:00
+        </div>
+        
+        <div class="title">Mathys Tel and Wilson Odobert combine in match-winning goal for France Under-21s (Video)</div>
+        <div class="summary">Wilson Odobert found the back of the net for France Under-21s in their win over Uzbekistan with the Tottenham winger’s goal being set up with a lovely touch from Mathys Tel. However, many of them have been on international duty since the end of the season, including French pair,Wilson OdobertandMathys Tel, who featured on Wednesday for France’s Under-21s side in their 2-1 win...</div>
+        
+        <a href="https://www.spurs-web.com/spurs-news/mathys-tel-and-wilson-odobert-combine-in-match-winning-goal-for-france-under-21s/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://www.spurs-web.com/spurs-news/mathys-tel-and-wilson-odobert-combine-in-match-winning-goal-for-france-under-21s/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://www.tottenhamhotspurnews.com/static/uploads/11/2025/05/Tottenham-Daniel-Levy-Ange-Postecoglou.jpg" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://www.tottenhamhotspurnews.com" class="source-link" target="_blank">TottenhamHotspurNews</a> - 05 June 2025, 16:30
+        </div>
+        
+        <div class="title">Ange Postecoglou exit terms already agreed as Tottenham boss returns to England</div>
+        <div class="summary">Ange Postecoglou’s future at Tottenham has been the main talking point since the summer transfer window opened. Noisesurrounding Postecoglou’s futurehas only grown louder since the season ended. But it seems as though a third season might not be on the cards withDaniel Levy set to make a decision.</div>
+        
+        <a href="https://www.tottenhamhotspurnews.com/news/ange-postecoglou-exit-terms-already-agreed-as-tottenham-boss-returns-to-england/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://www.tottenhamhotspurnews.com/news/ange-postecoglou-exit-terms-already-agreed-as-tottenham-boss-returns-to-england/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://www.tottenhamhotspurnews.com/static/uploads/11/2025/06/Ange-Levy-1024x575.png" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://www.tottenhamhotspurnews.com" class="source-link" target="_blank">TottenhamHotspurNews</a> - 05 June 2025, 16:10
+        </div>
+        
+        <div class="title">Pundit View: Tottenham to attract big names despite Postecoglou latest</div>
+        <div class="summary">The future of Ange Postecoglou remains up in the air at Tottenham, though it is believed thatDaniel Levy has already made his sack decision, though it is yet to be communicated. Tottenham are in desperate need of reinforcements in the summer transfer window.</div>
+        
+        <a href="https://www.tottenhamhotspurnews.com/exclusives/tottenham-to-attract-marquee-signings-despite-postecoglou-sack-news-exclusive/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://www.tottenhamhotspurnews.com/exclusives/tottenham-to-attract-marquee-signings-despite-postecoglou-sack-news-exclusive/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://www.tottenhamhotspurnews.com/static/uploads/11/2025/06/Tottenham-Daniel-Levy.jpg" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://www.tottenhamhotspurnews.com" class="source-link" target="_blank">TottenhamHotspurNews</a> - 05 June 2025, 16:00
+        </div>
+        
+        <div class="title">PFA react as Tottenham make brand-new contract announcement</div>
+        <div class="summary">Uncertainty continues to surround Tottenham as question marks remain over whetherAnge Postecoglou will still be in chargebeyond the summer, resulting in little activity in the transfer market. However, one area Spurs have not dawdled on in the off-season is the academy, with a handful of youngsters such asHarry Byrne signing new contractsat Hotspur Way.</div>
+        
+        <a href="https://www.tottenhamhotspurnews.com/news/pfa-react-as-tottenham-make-brand-new-contract-announcement/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://www.tottenhamhotspurnews.com/news/pfa-react-as-tottenham-make-brand-new-contract-announcement/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://www.footballinsider247.com/static/uploads/1/2025/06/Mathys-Tel-Brennan-Johnson-Tottenham.jpg" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://www.footballinsider247.com" class="source-link" target="_blank">Football Insider</a> - 05 June 2025, 15:56
+        </div>
+        
+        <div class="title">Brennan Johnson responds to Mathys Tel as 'Tottenham transfer stance revealed'</div>
+        <div class="summary">Football Insiderbroke the news thatDaniel Levy is set to sack Ange Postecogloudue to Spurs’ form in the Premier League, but it appears that the disruption has not put Tel off a permanent move. Following a confusing transfer affair during the winter window, the 20-year-old eventually joinedAnge Postecoglou‘s squad, going on to notch three goals and an assist in 20 appearances.</div>
+        
+        <a href="https://www.footballinsider247.com/brennan-johnson-responds-to-mathys-tel-as-tottenham-transfer-stance-revealed/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://www.footballinsider247.com/brennan-johnson-responds-to-mathys-tel-as-tottenham-transfer-stance-revealed/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://www.spurs-web.com/static/uploads/1/2025/04/ange-postecoglou-922.jpg" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://www.spurs-web.com" class="source-link" target="_blank">SpursWeb</a> - 05 June 2025, 15:43
+        </div>
+        
+        <div class="title">Report: Ange Postecoglou has returned from holiday; what happens next</div>
+        <div class="summary">Ange Postecoglou’s league form last season certainly has not helped him, after he led Tottenham to their worst ever league finish, with Spurs ending in 17th place after losing 22 matches. The future ofAnge PostecoglouatTottenham Hotspurhas been the talk of the town, with everyone expecting a decision on whether the Australian would be sacked or whether he would remain at the...</div>
+        
+        <a href="https://www.spurs-web.com/spurs-news/ange-postecoglou-has-returned-from-holiday-what-happens-next-at-tottenham/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://www.spurs-web.com/spurs-news/ange-postecoglou-has-returned-from-holiday-what-happens-next-at-tottenham/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://www.spurs-web.com/static/uploads/1/2025/05/daniel-levy-332.jpg" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://www.spurs-web.com" class="source-link" target="_blank">SpursWeb</a> - 05 June 2025, 15:30
+        </div>
+        
+        <div class="title">Tottenham save £15.6million in annual wages after four player decisions</div>
+        <div class="summary">Tottenham have made ruthlesscalls in their summer clearout, trimming the wage bill by £15.6 million ahead of what promises to be a busy transfer window. Tottenham Hotspur’ssummer business is already underway, withKevin Danso completing a permanent transferfollowing his initial loan spell.</div>
+        
+        <a href="https://www.spurs-web.com/spurs-news/tottenham-save-15-6million-in-annual-wages-after-four-player-decisions/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://www.spurs-web.com/spurs-news/tottenham-save-15-6million-in-annual-wages-after-four-player-decisions/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://www.spurs-web.com/static/uploads/1/2024/07/dressing-room1.jpg" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://www.spurs-web.com" class="source-link" target="_blank">SpursWeb</a> - 05 June 2025, 15:00
+        </div>
+        
+        <div class="title">Tottenham defender promises to fight for starting place after ‘difficult season’</div>
+        <div class="summary">A lot can be said about why Tottenham slumped so badly inAnge Postecoglou’ssecond season, after the Australian managed a fifth-place finish in his debut campaign, with injuries one of the main factors for the Lilywhites’ poor form. The 25/26 season simply has to be better forSpurs, and this would require that the players step up as Tottenham aim to compete on multiple fronts.</div>
+        
+        <a href="https://www.spurs-web.com/spurs-news/tottenham-defender-promises-to-fight-for-starting-place-after-difficult-season/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://www.spurs-web.com/spurs-news/tottenham-defender-promises-to-fight-for-starting-place-after-difficult-season/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://www.spurs-web.com/static/uploads/1/2025/04/ange-postecoglou-444.jpg" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://www.spurs-web.com" class="source-link" target="_blank">SpursWeb</a> - 05 June 2025, 14:17
+        </div>
+        
+        <div class="title">Tottenham stand still as transfer target agrees personal terms elsewhere</div>
+        <div class="summary">Spurs are still said to be keen on strengthening their midfield this transfer window, but with uncertainty around Postecoglou’s future, it seems as though Tottenham’s transfer activities are on hold. We reported a few days back thatTottenham Hotspur have been handed a quadruple blow this summer window, with several of their targets looking to secure moves elsewhere.</div>
+        
+        <a href="https://www.spurs-web.com/spurs-news/tottenham-stand-still-as-transfer-target-agrees-personal-terms-elsewhere/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://www.spurs-web.com/spurs-news/tottenham-stand-still-as-transfer-target-agrees-personal-terms-elsewhere/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://www.spurs-web.com/static/uploads/1/2024/09/cockerel54.jpg" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://www.spurs-web.com" class="source-link" target="_blank">SpursWeb</a> - 05 June 2025, 14:00
+        </div>
+        
+        <div class="title">Report: Tottenham have Crystal Palace player high on their transfer shortlist; would cost over £60m</div>
+        <div class="summary">Tottenham Hotspur are looking to bolster their midfield ahead of the new season and have one of the Premier League’s brightest talents on their radar with the summer transfer window firmly underway. TEAMtalk make it clear that Tottenham want to sign the Wharton for Postecoglou’s system, with the Australian said to be a big admirer of the English midfielder.</div>
+        
+        <a href="https://www.spurs-web.com/spurs-news/tottenham-have-crystal-palace-player-high-on-their-transfer-shortlist-would-cost-over-60m/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://www.spurs-web.com/spurs-news/tottenham-have-crystal-palace-player-high-on-their-transfer-shortlist-would-cost-over-60m/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://www.spurs-web.com/static/uploads/1/2025/06/GettyImages-2215076783-scaled.jpg" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://www.spurs-web.com" class="source-link" target="_blank">SpursWeb</a> - 05 June 2025, 13:30
+        </div>
+        
+        <div class="title">Report: Jose Mourinho wants to raid Tottenham for midfielder this summer with offer already made</div>
+        <div class="summary">Until a month and a half ago, it looked certain that the Mali international would depart Spurs with the midfielder struggling to get game regular time forAnge Postecoglou’sside having fallen behind the likes of Lucas Bergvall,Rodrigo BentancurandPape Matar Sarr.</div>
+        
+        <a href="https://www.spurs-web.com/spurs-news/fenerbahce-want-to-sign-yves-bissouma-from-tottenham/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://www.spurs-web.com/spurs-news/fenerbahce-want-to-sign-yves-bissouma-from-tottenham/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://www.spurs-web.com/static/uploads/1/2025/02/man-city33.jpg" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://www.spurs-web.com" class="source-link" target="_blank">SpursWeb</a> - 05 June 2025, 12:50
+        </div>
+        
+        <div class="title">Why Tottenham Hotspur will be happy with Man City's expected piece of transfer business - Opinion</div>
+        <div class="summary">With the summer transfer window now openTottenham Hotspurfans will be expecting to be busy one, especially after it was reported thatSpurs are looking to strengthen three key positionsand thatfive new faces could be heading to Hotspur Way this summer.</div>
+        
+        <a href="https://www.spurs-web.com/spurs-news/why-tottenham-hotspur-will-be-happy-with-manchester-citys-expected-piece-of-transfer-business/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://www.spurs-web.com/spurs-news/why-tottenham-hotspur-will-be-happy-with-manchester-citys-expected-piece-of-transfer-business/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://www.spurs-web.com/static/uploads/1/2024/10/cockerel3-scaled.jpg" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://www.spurs-web.com" class="source-link" target="_blank">SpursWeb</a> - 05 June 2025, 12:30
+        </div>
+        
+        <div class="title">Report: Tottenham could make move to sign former midfielder - sale rests on other deal</div>
+        <div class="summary">Chelsea’s stance on rumoured Tottenham Hotspur target Noni Madueke has come to light after the Blues made progress in their efforts to sign another exciting young English winger. Tottenham’sPremier Leaguerivals want to clinch a deal for the Dortmund man before the Club World Cup gets underway next month, and should they manage to do so, they will listen to offers for the...</div>
+        
+        <a href="https://www.spurs-web.com/spurs-news/tottenham-could-make-move-to-sign-former-midfielder-sale-rests-on-other-deal/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://www.spurs-web.com/spurs-news/tottenham-could-make-move-to-sign-former-midfielder-sale-rests-on-other-deal/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://www.spurs-web.com/static/uploads/1/2025/04/mikey-moore-3303.jpg" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://www.spurs-web.com" class="source-link" target="_blank">SpursWeb</a> - 05 June 2025, 12:00
+        </div>
+        
+        <div class="title">'Advanced' - Ben Jacobs provides an update on Mikey Moore's future at Tottenham</div>
+        <div class="summary">Jacobs has now suggested that Spurs are in no real danger of losing the winger and the Lilywhites have made significant progress in their efforts to tie him down to a new contract. Just as Tottenham fans are sweating over the future of Mikey Moore amid reports of transfer interest in the teenager, Ben Jacobs has now assuaged the fears of the supporters by revealing the...</div>
+        
+        <a href="https://www.spurs-web.com/spurs-news/ben-jacobs-provides-an-update-on-mikey-moores-future-at-tottenham-hotspur/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://www.spurs-web.com/spurs-news/ben-jacobs-provides-an-update-on-mikey-moores-future-at-tottenham-hotspur/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://www.spurs-web.com/static/uploads/1/2025/06/GettyImages-1975763862-scaled.jpg" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://www.spurs-web.com" class="source-link" target="_blank">SpursWeb</a> - 05 June 2025, 11:35
+        </div>
+        
+        <div class="title">Report: Brentford set sights on former Tottenham coach should Thomas Frank replace Postecoglou</div>
+        <div class="summary">WhileTottenhamare yet to announce a decision onAnge Postecoglou’sfuture, reports over recent weeks indicate that the search is already underway in N17 for his replacement. It was pointed out recently by Alasdair Gold thatTottenham may find it difficult to sell the appointment of Frank or other mid-table managers to Spurs fans, particularly since it would entail sacking the...</div>
+        
+        <a href="https://www.spurs-web.com/spurs-news/brentford-set-sights-on-former-tottenham-coach-should-thomas-frank-replace-ange-postecoglou/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://www.spurs-web.com/spurs-news/brentford-set-sights-on-former-tottenham-coach-should-thomas-frank-replace-ange-postecoglou/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://www.spurs-web.com/static/uploads/1/2025/06/archie-gray-26.jpg" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://www.spurs-web.com" class="source-link" target="_blank">SpursWeb</a> - 05 June 2025, 11:00
+        </div>
+        
+        <div class="title">Tottenham Hotspur will have unique aspect to their 2025/26 Nike kit during Champions League campaign</div>
+        <div class="summary">Spurs are set to debut the new kit in theirpre-season friendly against Arsenal in Hong Kong, marking the first ever north London derby to be played outside England – a significant milestone for both clubs and a bold marketing step for the Premier League.</div>
+        
+        <a href="https://www.spurs-web.com/spurs-news/tottenham-hotspur-will-have-unique-aspect-to-their-2025-26-nike-kit-during-champions-league-campaign/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://www.spurs-web.com/spurs-news/tottenham-hotspur-will-have-unique-aspect-to-their-2025-26-nike-kit-during-champions-league-campaign/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article">
+    <img src="https://www.spurs-web.com/static/uploads/1/2025/06/jordan-murphy.jpg" alt="Article image" class="article-image" onerror="this.style.display='none'">
+    
+    <div class="article-content">
+        <div class="source-info">
+            <a href="https://www.spurs-web.com" class="source-link" target="_blank">SpursWeb</a> - 05 June 2025, 10:30
+        </div>
+        
+        <div class="title">Simon Jordan and Danny Murphy argue over Pedro Porro’s comments on Ange Postecoglou</div>
+        <div class="summary">Danny Murphy and Simon Jordan disagree on whether Daniel Levy should take the Tottenham squad’s feelings into account while deciding on Ange Postecoglou’s future after Pedro Porro became the latest Spurs star to call for the Australian to stay. Lucas Bergvall and Archie Gray suggested Postecoglou deserves a third season at Tottenhamafter guiding the club to European glory.</div>
+        
+        <a href="https://www.spurs-web.com/spurs-news/simon-jordan-and-danny-murphy-argue-over-pedro-porros-comments-on-ange-postecoglou/" class="read-full-link" target="_blank">Read the full article here...</a>
+        
+        <div class="actions">
+            <div class="social-icons">
+                <button class="icon-btn like-btn" onclick="toggleLike(this)" title="Like">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span class="count">0</span>
+                </button>
+                <button class="icon-btn comment-btn" onclick="showComments()" title="Comment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>0</span>
+                </button>
+                <button class="icon-btn share-btn" onclick="shareArticle('https://www.spurs-web.com/spurs-news/simon-jordan-and-danny-murphy-argue-over-pedro-porros-comments-on-ange-postecoglou/')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                </button>
+                <button class="icon-btn save-btn" onclick="saveArticle(this)" title="Save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+<script>
+let updateInterval;
+let refreshInterval;
+
+function startAutoUpdate() {
+    updateInterval = setInterval(checkForUpdates, 30000);
+    refreshInterval = setInterval(() => {
+        console.log('Auto-refreshing page...');
+        location.reload();
+    }, 60000);
+    setInterval(updateLastUpdatedTime, 60000);
+}
+
+function updateLastUpdatedTime() {
+    const now = new Date();
+    const timeString = now.toLocaleDateString('en-GB', {
+        day: '2-digit',
+        month: 'long', 
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+    });
+    
+    const lastUpdateElement = document.getElementById('lastUpdateTime');
+    if (lastUpdateElement) {
+        lastUpdateElement.textContent = `Last updated: ${timeString}`;
+    }
+}
+
+function checkForUpdates() {
+    fetch('articles_data.json?t=' + Date.now())
+        .then(response => response.json())
+        .then(data => {
+            const currentCount = document.querySelectorAll('.article').length;
+            if (data.total_articles > currentCount) {
+                console.log('New articles found, refreshing...');
+                location.reload();
+            }
+        })
+        .catch(err => {
+            console.log('Update check failed:', err);
+        });
+}
+
+function toggleLike(btn) {
+    const svg = btn.querySelector('svg');
+    const countSpan = btn.querySelector('.count');
+    let count = parseInt(countSpan.textContent);
+    const isLiked = btn.classList.contains('liked');
+    
+    if (isLiked) {
+        count--;
+        btn.classList.remove('liked');
+        svg.setAttribute('fill', 'none');
+    } else {
+        count++;
+        btn.classList.add('liked');
+        svg.setAttribute('fill', 'currentColor');
+    }
+    
+    countSpan.textContent = count;
+}
+
+function showComments() {
+    alert('💬 Comments feature coming soon!');
+}
+
+function shareArticle(url) {
+    if (navigator.share) {
+        navigator.share({
+            title: 'Tottenham News',
+            url: url
+        });
+    } else {
+        navigator.clipboard.writeText(url).then(() => {
+            alert('📋 Link copied to clipboard!');
+        });
+    }
+}
+
+function saveArticle(btn) {
+    const svg = btn.querySelector('svg');
+    const isSaved = btn.classList.contains('saved');
+    
+    if (isSaved) {
+        btn.classList.remove('saved');
+        btn.title = 'Save';
+        svg.setAttribute('fill', 'none');
+    } else {
+        btn.classList.add('saved');
+        btn.title = 'Saved!';
+        svg.setAttribute('fill', 'currentColor');
+    }
+}
+
+function manualRefresh() {
+    const btn = document.getElementById('manualRefresh');
+    
+    if (btn) {
+        btn.innerHTML = 'Refreshing...';
+        btn.style.background = '#666';
+    }
+    
+    setTimeout(() => {
+        location.reload();
+    }, 500);
+}
+
+window.onload = function() {
+    console.log('Page loaded, starting auto-update...');
+    startAutoUpdate();
+};
+</script>
+
+</body></html>
