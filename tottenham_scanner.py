@@ -737,7 +737,7 @@ h1 {{
             
             html_content += f'''
 <div class="article">
-    {f'<img src="{article["image_url"]}" alt="Article image" class="article-image" onerror="this.style.display=\'none\'">' if article.get("image_url") else ''}
+    {f'<img src="{article["image_url"]}" alt="Article image" class="article-image" onerror="this.style.display=&quot;none&quot;">' if article.get("image_url") else ''}
     
     <div class="article-content">
         <div class="source-info">
