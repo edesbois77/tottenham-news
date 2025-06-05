@@ -966,3 +966,26 @@ window.onload = function() {
 if __name__ == "__main__":
     scanner = TottenhamAIScanner()
     scanner.run_continuous()
+
+# Add this at the very end of your file, after the main code:
+import http.server
+import socketserver
+import threading
+
+def start_web_server():
+    PORT = 8080
+    Handler = http.server.SimpleHTTPRequestHandler
+    with socketserver.TCPServer(("", PORT), Handler) as httpd:
+        print(f"Web server running on port {PORT}")
+        httpd.serve_forever()
+
+# Replace the last few lines with:
+if __name__ == "__main__":
+    # Start web server in background
+    web_thread = threading.Thread(target=start_web_server)
+    web_thread.daemon = True
+    web_thread.start()
+    
+    # Start the scanner
+    scanner = TottenhamAIScanner()
+    scanner.run_continuous()
